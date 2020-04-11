@@ -1,4 +1,5 @@
 <div class="container">
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
   <ng-container *ngFor="let book of books">
     <mat-card class="book-card">
       <mat-card-header class="book-header">

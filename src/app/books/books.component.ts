@@ -11,12 +11,13 @@ import { Observable, throwError } from "rxjs";
 })
 export class BooksComponent implements OnInit {
   books: any[] = [];
-
+  isLoading = false;
   constructor(private _httpClient: HttpClient) {}
 
   ngOnInit(): void {
+    this.isLoading = true;
     this._httpClient
-      .get<any>(environment.domain + "assets/data/books.json")
+      .get<any>("http://localhost:3000/api/book/getBooks")
       .pipe(
         retry(3),
         catchError(<never>this.handleError),
@@ -37,10 +38,12 @@ export class BooksComponent implements OnInit {
         })
       )
       .subscribe((bookData: any) => {
+        this.isLoading = false;
         this.books = [...bookData];
       });
   }
   private handleError(error: HttpErrorResponse): Observable<never> {
+    this.isLoading = false;
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
       console.error("An error occurred:", error.error.message);
