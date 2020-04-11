@@ -1,0 +1,32 @@
+<div class="container">
+  <ng-container *ngFor="let book of books">
+    <mat-card class="book-card">
+      <mat-card-header class="book-header">
+        <mat-card-title>{{ book.title }}</mat-card-title>
+        <mat-card-subtitle>{{ book.subtitle }}</mat-card-subtitle>
+      </mat-card-header>
+      <img
+        mat-card-image
+        src="assets/images/home_bk.jpg"
+        [attr.alt]="book.title"
+      />
+      <mat-card-content>
+        <p>
+          {{ book.description }}
+        </p>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button mat-button>LIKE</button>
+        <button mat-button>ADD TO CART</button>
+        <button mat-button>REQUEST FOR COPY</button>
+      </mat-card-actions>
+    </mat-card>
+  </ng-container>
+</div>
+<mat-paginator
+  [length]="100"
+  [pageSize]="10"
+  [pageSizeOptions]="[5, 10, 25, 100]"
+>
+</mat-paginator>

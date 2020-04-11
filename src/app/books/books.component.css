@@ -1,0 +1,15 @@
+.book-card {
+  max-width: 400px;
+  margin: 8px;
+}
+.book-header {
+  height: 4rem;
+}
+
+.container {
+  display: flex; /* or inline-flex */
+  flex-flow: row wrap;
+  height: 81vh;
+  overflow: auto;
+  background-color: lightgray;
+}

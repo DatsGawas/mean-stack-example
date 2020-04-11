@@ -1,1 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.login-container {
+  display: flex;
+  height: 90vh;
+  align-items: center;
+  justify-content: center;
+  background-color: lightgray;
+}
+
+.login-container > mat-card {
+  height: 30%;
+}
+
+.success-notification {
+  background-color: green !important;
+}
