@@ -3,6 +3,8 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { environment } from "src/environments/environment";
 import { catchError, retry, map } from "rxjs/internal/operators";
 import { Observable, throwError } from "rxjs";
+import { ResponseI } from "../models/response";
+import { CommonDataService } from "../services/common-data.service";
 
 @Component({
   selector: "app-books",
@@ -12,7 +14,11 @@ import { Observable, throwError } from "rxjs";
 export class BooksComponent implements OnInit {
   books: any[] = [];
   isLoading = false;
-  constructor(private _httpClient: HttpClient) {}
+
+  constructor(
+    private _httpClient: HttpClient,
+    public _commonDataService: CommonDataService
+  ) {}
 
   ngOnInit(): void {
     this.isLoading = true;
@@ -33,6 +39,7 @@ export class BooksComponent implements OnInit {
               description: book.description,
               pages: book.pages,
               website: book.website,
+              like: false,
             };
           });
         })
@@ -56,5 +63,18 @@ export class BooksComponent implements OnInit {
     }
     // return an observable with a user-facing error message
     return throwError("Something bad happened; please try again later.");
+  }
+
+  likeClickHandle(book: any) {
+    book.like = !book.like;
+    const reqBody = {
+      bookId: book.id,
+      like: book.like ? 1 : 0,
+    };
+    this._httpClient
+      .post("http://localhost:3000/api/book/update-review", reqBody)
+      .subscribe((res: ResponseI) => {
+        console.log(res);
+      });
   }
 }

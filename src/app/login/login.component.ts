@@ -34,11 +34,11 @@ export class LoginComponent implements OnInit {
       .subscribe((response: ResponseI) => {
         this._cookieService.set("authorization", response.data.token);
         this._commonDataService.openSuccessSnackBar(response.message);
-        loginForm.reset();
         // update auth status
         this._commonDataService.setUserDetailsListener(response.data.user);
         this._commonDataService.setAuthStatusListener(true);
         setTimeout(() => {
+          loginForm.reset();
           this._router.navigate(["/"]);
         }, 1000);
       });

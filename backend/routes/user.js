@@ -14,8 +14,6 @@ router.post("/signup", (req, res, next) => {
       role: 2,
     });
 
-    console.log(user);
-
     user
       .save()
       .then((result) => {

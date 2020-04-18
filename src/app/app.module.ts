@@ -23,6 +23,7 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { CookieService } from "ngx-cookie-service";
 import { AuthInterceptorService } from "./services/auth-interceptor.service";
 import { MatMenuModule } from "@angular/material/menu";
+import { MatBadgeModule } from "@angular/material/badge";
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { MatMenuModule } from "@angular/material/menu";
     MatProgressSpinnerModule,
     MatSnackBarModule,
     MatMenuModule,
+    MatBadgeModule,
   ],
   providers: [
     CookieService,

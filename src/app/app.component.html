@@ -25,6 +25,24 @@
     >Login</span
   >
 
+  <span
+    class="link-padding"
+    (click)="handleNavigation('home')"
+    *ngIf="
+      isUserAuthenticated &&
+      _commonDataService.getUserDetailsListener().role == 2
+    "
+    ><mat-icon
+      aria-hidden="false"
+      aria-label="Example home icon"
+      matBadge="0"
+      matBadgePosition="after"
+      matBadgeColor="accent"
+      matBadgeSize="small"
+      >book</mat-icon
+    ></span
+  >
+
   <button mat-button [matMenuTriggerFor]="info" *ngIf="isUserAuthenticated">
     {{ _commonDataService.getUserDetailsListener().name }}
   </button>

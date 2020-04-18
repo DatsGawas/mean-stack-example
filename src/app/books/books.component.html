@@ -18,9 +18,38 @@
       </mat-card-content>
 
       <mat-card-actions>
-        <button mat-button>LIKE</button>
-        <button mat-button>ADD TO CART</button>
-        <button mat-button>REQUEST FOR COPY</button>
+        <button
+          [disabled]="
+            _commonDataService.getUserDetailsListener().role == 2 ? false : true
+          "
+          mat-button
+          matBadge="0"
+          matBadgePosition="after"
+          matBadgeColor="accent"
+          matBadgeSize="small"
+          [matBadgeHidden]="
+            _commonDataService.getUserDetailsListener().role == 2 ? false : true
+          "
+          (click)="likeClickHandle(book)"
+        >
+          {{ !book.like ? "LIKE" : "UNLIKE" }}
+        </button>
+        <button
+          mat-button
+          [disabled]="
+            _commonDataService.getUserDetailsListener().role == 2 ? false : true
+          "
+        >
+          ADD TO CART
+        </button>
+        <button
+          mat-button
+          [disabled]="
+            _commonDataService.getUserDetailsListener().role == 2 ? false : true
+          "
+        >
+          REQUEST FOR COPY
+        </button>
       </mat-card-actions>
     </mat-card>
   </ng-container>
