@@ -5,3 +5,7 @@ mat-form-field {
 mat-spinner {
   margin: auto;
 }
+
+.login-container > mat-card {
+  height: 40% !important;
+}

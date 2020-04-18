@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { CookieService } from "ngx-cookie-service";
 import { CommonDataService } from "./services/common-data.service";
 import { Subscription } from "rxjs";
+import { User } from "./models/user";
 
 @Component({
   selector: "app-root",
@@ -14,7 +15,7 @@ export class AppComponent implements OnInit, OnDestroy {
   authStatusListenerSub: Subscription;
   constructor(
     private _router: Router,
-    private _commonDataService: CommonDataService,
+    public _commonDataService: CommonDataService,
     private _cookieService: CookieService
   ) {}
   ngOnDestroy(): void {
@@ -36,6 +37,7 @@ export class AppComponent implements OnInit, OnDestroy {
   logout() {
     this._cookieService.delete("authorization");
     this._commonDataService.setAuthStatusListener(false);
+    this._commonDataService.setUserDetailsListener(new User());
     this._router.navigate(["/"]);
   }
 }

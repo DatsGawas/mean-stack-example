@@ -8,9 +8,13 @@ const User = require("./../models/user");
 router.post("/signup", (req, res, next) => {
   bcrypt.hash(req.body.password, 10).then((hash) => {
     const user = new User({
+      name: req.body.name,
       email: req.body.email,
       password: hash,
+      role: 2,
     });
+
+    console.log(user);
 
     user
       .save()
@@ -55,7 +59,14 @@ router.post("/login", (req, res, next) => {
 
       res.status(200).json({
         message: "Login Successful",
-        token: token,
+        data: {
+          token: token,
+          user: {
+            name: fetchUser.name,
+            email: fetchUser.email,
+            role: fetchUser.role,
+          },
+        },
       });
     })
     .catch(() => {

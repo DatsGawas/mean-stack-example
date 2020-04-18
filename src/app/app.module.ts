@@ -22,6 +22,7 @@ import { SignUpComponent } from "./signup/signup.component";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { CookieService } from "ngx-cookie-service";
 import { AuthInterceptorService } from "./services/auth-interceptor.service";
+import { MatMenuModule } from "@angular/material/menu";
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { AuthInterceptorService } from "./services/auth-interceptor.service";
     MatInputModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
+    MatMenuModule,
   ],
   providers: [
     CookieService,

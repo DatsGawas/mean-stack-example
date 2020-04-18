@@ -7,7 +7,10 @@
   <span class="link-padding" (click)="handleNavigation('books')">Books</span>
   <span
     class="link-padding"
-    *ngIf="isUserAuthenticated"
+    *ngIf="
+      isUserAuthenticated &&
+      _commonDataService.getUserDetailsListener().role == 1
+    "
     (click)="handleNavigation('add-book')"
     >Add Book</span
   >
@@ -15,14 +18,20 @@
   <!-- This fills the remaining space of the current row -->
   <span class="example-fill-remaining-space"></span>
 
-  <span class="link-padding" (click)="handleNavigation('login')">Login</span>
   <span
-    mat-button
     class="link-padding"
-    *ngIf="isUserAuthenticated"
-    (click)="logout()"
-    >Logout</span
+    (click)="handleNavigation('login')"
+    *ngIf="!isUserAuthenticated"
+    >Login</span
   >
+
+  <button mat-button [matMenuTriggerFor]="info" *ngIf="isUserAuthenticated">
+    {{ _commonDataService.getUserDetailsListener().name }}
+  </button>
+  <mat-menu #info="matMenu">
+    <button mat-menu-item (click)="logout()">Logout</button>
+    <button mat-menu-item>Edit Profile</button>
+  </mat-menu>
 </mat-toolbar>
 <mat-grid-list cols="12">
   <router-outlet></router-outlet>
