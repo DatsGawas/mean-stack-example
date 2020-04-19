@@ -22,3 +22,12 @@
   width: 48%;
   margin-left: 5px;
 }
+
+.image-preview {
+  height: 7rem;
+  margin: 1rem;
+}
+
+.image-preview img {
+  height: 100%;
+}

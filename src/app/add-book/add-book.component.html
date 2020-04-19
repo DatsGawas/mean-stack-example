@@ -124,14 +124,19 @@
           </mat-form-field>
           <div>
             <button
-              mat-button
+              mat-raised-button
               type="submit"
               class="btn btn-primary"
               (click)="filePicker.click()"
             >
               Upload image
             </button>
-            <input #filePicker type="file" (change)="onImageUpload($event)" />
+            <input
+              hidden
+              #filePicker
+              type="file"
+              (change)="onImageUpload($event)"
+            />
 
             <div
               class="image-preview"
@@ -144,10 +149,13 @@
               <img [src]="imagePreview" [alt]="bookForm.value.title" />
             </div>
           </div>
-
-          <button mat-raised-button>Add Book</button>
         </form>
       </mat-card-content>
+      <mat-card-actions [align]="'end'">
+        <button mat-raised-button (click)="addBookHandle()">
+          Add Book
+        </button>
+      </mat-card-actions>
     </mat-card>
   </div>
 </div>
