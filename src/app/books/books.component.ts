@@ -5,6 +5,7 @@ import { catchError, retry, map } from "rxjs/internal/operators";
 import { Observable, throwError } from "rxjs";
 import { ResponseI } from "../models/response";
 import { CommonDataService } from "../services/common-data.service";
+import { User } from "../models/user";
 
 @Component({
   selector: "app-books",
@@ -14,13 +15,20 @@ import { CommonDataService } from "../services/common-data.service";
 export class BooksComponent implements OnInit {
   books: any[] = [];
   isLoading = false;
+  userInfo: User;
 
   constructor(
     private _httpClient: HttpClient,
     public _commonDataService: CommonDataService
-  ) {}
+  ) {
+    this.userInfo = new User();
+  }
 
   ngOnInit(): void {
+    this._commonDataService.getUserDetailsListener().subscribe((user: User) => {
+      this.userInfo = user;
+    });
+
     this.isLoading = true;
     this._httpClient
       .get<any>("http://localhost:3000/api/book/getBooks")

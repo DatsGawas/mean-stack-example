@@ -19,35 +19,21 @@
 
       <mat-card-actions>
         <button
-          [disabled]="
-            _commonDataService.getUserDetailsListener().role == 2 ? false : true
-          "
+          [disabled]="userInfo.role == 2 ? false : true"
           mat-button
           matBadge="0"
           matBadgePosition="after"
           matBadgeColor="accent"
           matBadgeSize="small"
-          [matBadgeHidden]="
-            _commonDataService.getUserDetailsListener().role == 2 ? false : true
-          "
+          [matBadgeHidden]="userInfo.role == 2 ? false : true"
           (click)="likeClickHandle(book)"
         >
           {{ !book.like ? "LIKE" : "UNLIKE" }}
         </button>
-        <button
-          mat-button
-          [disabled]="
-            _commonDataService.getUserDetailsListener().role == 2 ? false : true
-          "
-        >
+        <button mat-button [disabled]="userInfo.role == 2 ? false : true">
           ADD TO CART
         </button>
-        <button
-          mat-button
-          [disabled]="
-            _commonDataService.getUserDetailsListener().role == 2 ? false : true
-          "
-        >
+        <button mat-button [disabled]="userInfo.role == 2 ? false : true">
           REQUEST FOR COPY
         </button>
       </mat-card-actions>

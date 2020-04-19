@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Subject } from "rxjs";
+import { Subject, BehaviorSubject } from "rxjs";
 import { MatSnackBarConfig, MatSnackBar } from "@angular/material/snack-bar";
 import { User } from "../models/user";
 
@@ -8,7 +8,7 @@ import { User } from "../models/user";
 })
 export class CommonDataService {
   private authStatusListener = new Subject<boolean>();
-  private userDetailsListener = new Subject<User>();
+  private userDetailsListener = new BehaviorSubject<User>(new User());
 
   getUserDetailsListener() {
     return this.userDetailsListener.asObservable();
