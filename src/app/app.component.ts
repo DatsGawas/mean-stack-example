@@ -13,11 +13,14 @@ import { User } from "./models/user";
 export class AppComponent implements OnInit, OnDestroy {
   isUserAuthenticated = false;
   authStatusListenerSub: Subscription;
+  userInfo: User;
   constructor(
     private _router: Router,
     public _commonDataService: CommonDataService,
     private _cookieService: CookieService
-  ) {}
+  ) {
+    this.userInfo = new User();
+  }
   ngOnDestroy(): void {
     if (this.authStatusListenerSub) {
       this.authStatusListenerSub.unsubscribe();
@@ -29,6 +32,10 @@ export class AppComponent implements OnInit, OnDestroy {
       .subscribe((status: boolean) => {
         this.isUserAuthenticated = status;
       });
+
+    this._commonDataService.getUserDetailsListener().subscribe((user: User) => {
+      this.userInfo = user;
+    });
   }
   handleNavigation(path: string) {
     this._router.navigate([path]);
@@ -36,6 +43,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   logout() {
     this._cookieService.delete("authorization");
+    this._cookieService.delete("userInfo");
     this._commonDataService.setAuthStatusListener(false);
     this._commonDataService.setUserDetailsListener(new User());
     this._router.navigate(["/"]);

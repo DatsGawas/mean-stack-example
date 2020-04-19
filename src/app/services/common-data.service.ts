@@ -8,14 +8,14 @@ import { User } from "../models/user";
 })
 export class CommonDataService {
   private authStatusListener = new Subject<boolean>();
-  private userDetailsListener: User;
+  private userDetailsListener = new Subject<User>();
 
   getUserDetailsListener() {
-    return this.userDetailsListener;
+    return this.userDetailsListener.asObservable();
   }
 
   setUserDetailsListener(user: User) {
-    this.userDetailsListener = user;
+    this.userDetailsListener.next(user);
   }
 
   getAuthStatusListener() {
@@ -26,9 +26,7 @@ export class CommonDataService {
     this.authStatusListener.next(status);
   }
 
-  constructor(public snackBar: MatSnackBar) {
-    this.userDetailsListener = new User();
-  }
+  constructor(public snackBar: MatSnackBar) {}
 
   openSuccessSnackBar(msg) {
     const config = new MatSnackBarConfig();

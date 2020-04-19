@@ -5,6 +5,8 @@ import { BooksComponent } from "./books/books.component";
 import { AddBookComponent } from "./add-book/add-book.component";
 import { LoginComponent } from "./login/login.component";
 import { SignUpComponent } from "./signup/signup.component";
+import { AdminGuard } from "./guard/admin.guard";
+import { AppGuard } from "./guard/app.guard";
 
 const routes: Routes = [
   {
@@ -31,6 +33,7 @@ const routes: Routes = [
   {
     path: "add-book",
     component: AddBookComponent,
+    canActivate: [AdminGuard],
   },
 ];
 

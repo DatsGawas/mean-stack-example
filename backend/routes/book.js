@@ -60,7 +60,7 @@ router.post("/update-review", checkAuth, (req, res, next) => {
     });
 });
 
-router.post("/add-book", (req, res, next) => {
+router.post("/add-book", checkAuth, (req, res, next) => {
   const url = req.protocol + "://" + req.get("host");
   console.log(req.body, url);
   const book = new Books({

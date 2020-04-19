@@ -152,7 +152,11 @@
         </form>
       </mat-card-content>
       <mat-card-actions [align]="'end'">
-        <button mat-raised-button (click)="addBookHandle()">
+        <button
+          mat-raised-button
+          [disabled]="bookForm.invalid"
+          (click)="addBookHandle()"
+        >
           Add Book
         </button>
       </mat-card-actions>

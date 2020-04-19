@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
         this._commonDataService.openSuccessSnackBar(response.message);
         // update auth status
         this._commonDataService.setUserDetailsListener(response.data.user);
+        this._cookieService.set("userInfo", JSON.stringify(response.data.user));
         this._commonDataService.setAuthStatusListener(true);
         setTimeout(() => {
           loginForm.reset();

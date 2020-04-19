@@ -66,9 +66,9 @@ export class AddBookComponent implements OnInit {
   }
 
   addBookHandle() {
-    // if (this.bookForm.invalid) {
-    //   return;
-    // }
+    if (this.bookForm.invalid) {
+      return;
+    }
     // const postData = new FormData();
     // postData.append("title", this.book.title);
 
