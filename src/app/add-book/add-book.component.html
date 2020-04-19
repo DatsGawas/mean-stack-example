@@ -1,1 +1,153 @@
-<p>add-book works!</p>
+<div class="flex-container">
+  <div>
+    <mat-card>
+      <mat-card-content>
+        <form class="example-form" [formGroup]="bookForm">
+          <mat-form-field class="example-full-width">
+            <input
+              matInput
+              type="text"
+              class="form-control"
+              [(ngModel)]="book.title"
+              name="title"
+              id="exampleInputTitle"
+              aria-describedby="title"
+              placeholder="Enter title"
+              formControlName="title"
+            />
+            <mat-error *ngIf="bookForm.get('title').invalid"
+              >Please enter book title.</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input
+              matInput
+              type="text"
+              class="form-control"
+              formControlName="subtitle"
+              [(ngModel)]="book.subtitle"
+              name="subtitle"
+              id="exampleInputsubtitle"
+              aria-describedby="subtitle"
+              placeholder="Enter subtitle"
+            />
+            <mat-error *ngIf="bookForm.get('subtitle').invalid">
+              Please enter book sub title
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input
+              matInput
+              type="text"
+              class="form-control"
+              formControlName="author"
+              [(ngModel)]="book.author"
+              id="exampleInputauthor"
+              aria-describedby="emailHelp"
+              placeholder="Enter author"
+            />
+            <mat-error *ngIf="bookForm.get('author').invalid">
+              Please enter book author
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <input
+              matInput
+              type="text"
+              class="form-control"
+              formControlName="published"
+              [(ngModel)]="book.published"
+              id="exampleInputpublished"
+              aria-describedby="published"
+              placeholder="Enter published date"
+            />
+            <mat-error *ngIf="bookForm.get('published').invalid">
+              Please enter book published Date
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <input
+              matInput
+              class="form-control"
+              type="text"
+              formControlName="publisher"
+              [(ngModel)]="book.publisher"
+              id="exampleInputpublisher"
+              placeholder="publisher"
+            />
+            <mat-error *ngIf="bookForm.get('publisher').invalid">
+              Please enter book publisher
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <input
+              matInput
+              class="form-control"
+              type="text"
+              formControlName="website"
+              [(ngModel)]="book.website"
+              name="website"
+              id="exampleInputconwebsite"
+              placeholder="website"
+            />
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <input
+              matInput
+              class="form-control"
+              type="number"
+              formControlName="pages"
+              [(ngModel)]="book.pages"
+              id="exampleInputpages"
+              placeholder="pages"
+            />
+
+            <mat-error *ngIf="bookForm.get('pages').invalid">
+              Please enter book pages
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <textarea
+              matInput
+              [(ngModel)]="book.description"
+              class="form-control"
+              id="exampleFormdescription"
+              rows="3"
+              placeholder="Description"
+              formControlName="description"
+            ></textarea>
+          </mat-form-field>
+          <div>
+            <button
+              mat-button
+              type="submit"
+              class="btn btn-primary"
+              (click)="filePicker.click()"
+            >
+              Upload image
+            </button>
+            <input #filePicker type="file" (change)="onImageUpload($event)" />
+
+            <div
+              class="image-preview"
+              *ngIf="
+                imagePreview &&
+                imagePreview !== '' &&
+                bookForm.get('image').valid
+              "
+            >
+              <img [src]="imagePreview" [alt]="bookForm.value.title" />
+            </div>
+          </div>
+
+          <button mat-raised-button>Add Book</button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

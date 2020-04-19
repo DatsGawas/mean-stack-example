@@ -1,0 +1,24 @@
+.flex-container {
+  display: flex;
+  justify-content: center;
+  height: 90vh;
+  margin: 2% 20%;
+}
+
+.flex-container > mat-card {
+  background-color: #f1f1f1;
+  color: white;
+  width: 90%;
+  height: 80vh;
+}
+
+.example-form {
+  min-width: 100%;
+  max-width: 100%;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 48%;
+  margin-left: 5px;
+}
