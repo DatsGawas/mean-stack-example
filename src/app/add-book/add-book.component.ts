@@ -69,6 +69,7 @@ export class AddBookComponent implements OnInit {
     if (this.bookForm.invalid) {
       return;
     }
+    // debugger;
     // const postData = new FormData();
     // postData.append("title", this.book.title);
 
@@ -84,10 +85,10 @@ export class AddBookComponent implements OnInit {
 
     // postData.append("website", this.book.website);
     // postData.append("image", this.bookForm.value.image, this.book.title);
-
     this._httpClient
       .post("http://localhost:3000/api/book/add-book", this.book)
       .subscribe((response: ResponseI) => {
+        debugger;
         // this._router.navigate(["/login"]);
         this._commonDataService.openSuccessSnackBar(response.message);
 

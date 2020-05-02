@@ -6,7 +6,7 @@ import { AddBookComponent } from "./add-book/add-book.component";
 import { LoginComponent } from "./login/login.component";
 import { SignUpComponent } from "./signup/signup.component";
 import { AdminGuard } from "./guard/admin.guard";
-import { BooksGuard, AppBasicGuard } from "./guard/appBasic.guard";
+import { AppBasicGuard } from "./guard/appBasic.guard";
 
 const routes: Routes = [
   {
